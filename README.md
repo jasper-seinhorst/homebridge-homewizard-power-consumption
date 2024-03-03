@@ -2,7 +2,7 @@
 [![npm](https://img.shields.io/npm/dt/homebridge-homewizard-power-consumption.svg)](https://www.npmjs.com/package/homebridge-homewizard-power-consumption)
 [![npm](https://img.shields.io/npm/v/homebridge-homewizard-power-consumption.svg)](https://www.npmjs.com/package/homebridge-homewizard-power-consumption)
 
- This Homebridge plugin presents two sensors: one dedicated to monitoring current power consumption within your household, and another tracking the power return for those equipped with solar panels. Gain real-time insights into your energy usage and optimize your home's efficiency effortlessly. These sensor allows you to add automations to your Apple Home based on power consumption or power return.
+This Homebridge plugin presents two sensors: one dedicated to monitoring current power consumption within your household, and another tracking the power return for those equipped with solar panels. This plugin uses data from your [Wi-Fi P1 meter](https://www.homewizard.com/). Gain real-time insights into your energy usage and optimize your home's efficiency effortlessly. These sensor allows you to add automations to your Apple Home based on power consumption or power return.
 
  ![Two sensors in Utility room](/assets/plugin-example.png) ![Automation example](/assets/automation-example.png)
 
