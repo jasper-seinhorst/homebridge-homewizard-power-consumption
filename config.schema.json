@@ -1,0 +1,16 @@
+{
+  "pluginAlias": "HomewizardPowerConsumption",
+  "pluginType": "platform",
+  "singular": true,
+  "schema": {
+    "type": "object",
+    "properties": {
+      "ip": {
+        "title": "P1 IP address",
+        "type": "string",
+        "required": true,
+        "default": ""
+      }
+    }
+  }
+}
