@@ -18,7 +18,6 @@ export default class PowerConsumption implements HomewizardPowerConsumptionAcces
     const minimumLuxLevel = 0.0001;
     let newPowerConsumptionLevel = minimumLuxLevel;
     if (consumption > 0) {
-      console.log('consumption > 0');
       newPowerConsumptionLevel = consumption;
     }
     this.chargingPower.setCharacteristic(this.Characteristic.CurrentAmbientLightLevel, newPowerConsumptionLevel);

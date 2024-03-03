@@ -18,7 +18,6 @@ export default class PowerReturn implements HomewizardPowerConsumptionAccessory 
     const minimumLuxLevel = 0.0001;
     let newPowerConsumptionLevel = minimumLuxLevel;
     if (consumption < 0) {
-      console.log('consumption < 0', consumption * -1);
       newPowerConsumptionLevel = consumption * -1;
     }
     this.chargingPower.setCharacteristic(this.Characteristic.CurrentAmbientLightLevel, newPowerConsumptionLevel);

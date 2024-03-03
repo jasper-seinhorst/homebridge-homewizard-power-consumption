@@ -8,7 +8,7 @@ export class HomewizardPowerConsumption implements DynamicPlatformPlugin {
   public readonly Service: typeof Service = this.api.hap.Service;
   public readonly Characteristic: typeof Characteristic = this.api.hap.Characteristic;
   public readonly accessories: PlatformAccessory[] = [];
-  private readonly heartBeatInterval = 5 * 1000; // every minute
+  private readonly heartBeatInterval = 60 * 1000; // every minute
   private devices: HomewizardPowerConsumptionAccessory[] = [];
 
 
@@ -67,11 +67,15 @@ export class HomewizardPowerConsumption implements DynamicPlatformPlugin {
   }
 
   private async heartBeat() {
-    const { data } = await axios.get(`http://${this.config.ip}/api/v1/data`);
-    const consumption = data.active_power_w as number;
-
-    this.devices.forEach((device: HomewizardPowerConsumptionAccessory) => {
-      device.beat(consumption);
-    });
+    try {
+      const { data } = await axios.get(`http://${this.config.ip}/api/v1/data`);
+      const consumption = data.active_power_w as number;
+      this.devices.forEach((device: HomewizardPowerConsumptionAccessory) => {
+        device.beat(consumption);
+      });
+    } catch(error) {
+      this.log.error('Something went wrong');
+      this.log.error(error);
+    }
   }
 }
