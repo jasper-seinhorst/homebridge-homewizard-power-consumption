@@ -1,7 +1,7 @@
 {
   "displayName": "Homebridge Homewizard Power Consumption",
   "name": "homebridge-homewizard-power-consumption",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "See current power consumption or power return in Homekit",
   "license": "Apache-2.0",
   "author": "Jasper Seinhorst",
@@ -25,7 +25,10 @@
   },
   "keywords": [
     "homebridge-plugin",
-    "Homewizard"
+    "Homewizard",
+    "Eco",
+    "Power consumtion",
+    "Solar"
   ],
   "devDependencies": {
     "@types/node": "^20.2.5",

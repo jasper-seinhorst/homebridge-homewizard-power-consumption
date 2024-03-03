@@ -43,27 +43,39 @@ export class HomewizardPowerConsumption implements DynamicPlatformPlugin {
   }
 
   private setupAccessoires() {
+
     const powerConsumptionUuid = this.api.hap.uuid.generate('homewizard-power-consumption');
     const powerConsumptionExsistingAccessory = this.accessories.find(accessory => accessory.UUID === powerConsumptionUuid);
-    if (powerConsumptionExsistingAccessory) {
-      this.devices.push(new PowerConsumption(this.config, this.log, this.api, powerConsumptionExsistingAccessory));
+    if (this.config.hidePowerConsumptionDevice !== true) {
+      if (powerConsumptionExsistingAccessory) {
+        this.devices.push(new PowerConsumption(this.config, this.log, this.api, powerConsumptionExsistingAccessory));
+      } else {
+        this.log.info('Power Consumption added as accessory');
+        const accessory = new this.api.platformAccessory('Power Consumption', powerConsumptionUuid);
+        this.devices.push(new PowerConsumption(this.config, this.log, this.api, accessory));
+        this.api.registerPlatformAccessories('homebridge-homewizard-power-consumption', 'HomewizardPowerConsumption', [accessory]);
+      }
     } else {
-      this.log.info('Power Consumption added as accessory');
-      const accessory = new this.api.platformAccessory('Power Consumption', powerConsumptionUuid);
-      this.devices.push(new PowerConsumption(this.config, this.log, this.api, accessory));
-      this.api.registerPlatformAccessories('homebridge-homewizard-power-consumption', 'HomewizardPowerConsumption', [accessory]);
+      if (powerConsumptionExsistingAccessory) {
+        this.api.unregisterPlatformAccessories(powerConsumptionUuid, 'homebridge-homewizard-power-consumption', [powerConsumptionExsistingAccessory]);
+      }
     }
-
 
     const powerReturnUuid = this.api.hap.uuid.generate('homewizard-power-return');
     const powerReturnExsistingAccessory = this.accessories.find(accessory => accessory.UUID === powerReturnUuid);
-    if (powerReturnExsistingAccessory) {
-      this.devices.push(new PowerReturn(this.config, this.log, this.api, powerReturnExsistingAccessory));
+    if (this.config.hidePowerReturnDevice !== true) {
+      if (powerReturnExsistingAccessory) {
+        this.devices.push(new PowerReturn(this.config, this.log, this.api, powerReturnExsistingAccessory));
+      } else {
+        this.log.info('Power Return added as accessory');
+        const accessory = new this.api.platformAccessory('Power Return', powerReturnUuid);
+        this.devices.push(new PowerReturn(this.config, this.log, this.api, accessory));
+        this.api.registerPlatformAccessories('homebridge-homewizard-power-consumption', 'HomewizardPowerConsumption', [accessory]);
+      }
     } else {
-      this.log.info('Power Return added as accessory');
-      const accessory = new this.api.platformAccessory('Power Return', powerReturnUuid);
-      this.devices.push(new PowerReturn(this.config, this.log, this.api, accessory));
-      this.api.registerPlatformAccessories('homebridge-homewizard-power-consumption', 'HomewizardPowerConsumption', [accessory]);
+      if (powerReturnExsistingAccessory) {
+        this.api.unregisterPlatformAccessories(powerReturnUuid, 'homebridge-homewizard-power-consumption', [powerReturnExsistingAccessory]);
+      }
     }
   }
 

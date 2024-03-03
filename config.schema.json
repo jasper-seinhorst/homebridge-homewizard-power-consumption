@@ -18,6 +18,16 @@
         "default": 60,
         "minimum": 5,
         "maximum": 3600
+      },
+      "hidePowerConsumptionDevice": {
+        "title": "Hide Power Consumption sensor",
+        "default": false,
+        "type": "boolean"
+      },
+      "hidePowerReturnDevice": {
+        "title": "Hide Power Return sensor",
+        "default": false,
+        "type": "boolean"
       }
     }
   }

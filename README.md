@@ -2,7 +2,9 @@
 [![npm](https://img.shields.io/npm/dt/homebridge-homewizard-power-consumption.svg)](https://www.npmjs.com/package/homebridge-homewizard-power-consumption)
 [![npm](https://img.shields.io/npm/v/homebridge-homewizard-power-consumption.svg)](https://www.npmjs.com/package/homebridge-homewizard-power-consumption)
 
-This Homebrudge plugin offers two sensors; one for the current power consumption and one for the current power return.
+ This Homebridge plugin presents two sensors: one dedicated to monitoring current power consumption within your household, and another tracking the power return for those equipped with solar panels. Gain real-time insights into your energy usage and optimize your home's efficiency effortlessly. These sensor allows you to add automations to your Apple Home based on power consumption or power return.
+
+ ![Two sensors in Utility room](/assets/plugin-example.png) ![Automation example](/assets/automation-example.png)
 
 ## Installation
 To install the *Homebridge Homewizard Power Consumption* plugin follow these steps:
@@ -17,9 +19,12 @@ To install the *Homebridge Homewizard Power Consumption* plugin follow these ste
     {
         "platform": "HomewizardPowerConsumption",
         "ip": "<<IP of your P1>>",
-        "pollInterval": 60
+        "pollInterval": 60,
+        "hidePowerConsumptionDevice": false,
+        "hidePowerReturnDevice": false
     }
     ```
 
 ## Caveats
-Both sensors are exposed as Lux (light) sensors. The Lux level indicates the w level of the consumption. E.g. If your home has a power consumption of 2000w, the sensor will show 2000lux.
+- Each sensor is represented as a Lux (light) sensor. The Lux level directly reflects the power consumption in watts. For example, if your home is consuming 2000 watts of power, the sensor will display 2000 Lux.
+- Not every household has solar panels, by adding `"hidePowerReturnDevice": false` to the plugins config you can disable the power return sensor.
