@@ -16,7 +16,8 @@ To install the *Homebridge Homewizard Power Consumption* plugin follow these ste
     ```
     {
         "platform": "HomewizardPowerConsumption",
-        "ip": "<<IP of your P1>>"
+        "ip": "<<IP of your P1>>",
+        "pollInterval": 60
     }
     ```
 

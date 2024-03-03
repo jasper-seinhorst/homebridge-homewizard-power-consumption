@@ -8,11 +8,12 @@ export class HomewizardPowerConsumption implements DynamicPlatformPlugin {
   public readonly Service: typeof Service = this.api.hap.Service;
   public readonly Characteristic: typeof Characteristic = this.api.hap.Characteristic;
   public readonly accessories: PlatformAccessory[] = [];
-  private readonly heartBeatInterval = 60 * 1000; // every minute
+  private heartBeatInterval: number;
   private devices: HomewizardPowerConsumptionAccessory[] = [];
 
 
   constructor(public readonly log: Logger, public readonly config: PlatformConfig, public readonly api: API) {
+    this.heartBeatInterval = (config.pollInterval || 60) * 1000;
     this.api.on('didFinishLaunching', () => {
       this.initialise();
     });

@@ -10,6 +10,14 @@
         "type": "string",
         "required": true,
         "default": ""
+      },
+      "pollInterval": {
+        "title": "Poll interval (in seconds)",
+        "type": "number",
+        "required": true,
+        "default": 60,
+        "minimum": 5,
+        "maximum": 3600
       }
     }
   }
