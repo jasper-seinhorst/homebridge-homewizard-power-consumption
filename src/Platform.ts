@@ -29,7 +29,7 @@ export class HomewizardPowerConsumption implements DynamicPlatformPlugin {
 
   private async initialise() {
     if (!this.validateConfig()) {
-      this.log.warn('Please provide P1\'s IP address');
+      this.log.error('Configuration error. Please provide your Wi-Fi P1 meter\'s IP address');
       return;
     }
 
@@ -86,9 +86,10 @@ export class HomewizardPowerConsumption implements DynamicPlatformPlugin {
       this.devices.forEach((device: HomewizardPowerConsumptionAccessory) => {
         device.beat(consumption);
       });
+      this.log.debug('heartbeat', consumption);
     } catch(error) {
-      this.log.error('Something went wrong');
-      this.log.error(error);
+      this.log.error('Something went wrong, please double check the Wi-Fi P1 meter\'s IP address');
+      this.log.debug(error);
     }
   }
 }
