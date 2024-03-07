@@ -27,9 +27,26 @@ export class HomewizardPowerConsumption implements DynamicPlatformPlugin {
     return !!this.config.ip;
   }
 
+  private async validateIp(): Promise<boolean> {
+    try {
+      const { data } = await axios.get(`http://${this.config.ip}/api/`, { timeout: 2000 });
+      if (data && data.product_type === 'HWE-P1') {
+        return true;
+      }
+      return false;
+    } catch(error) {
+      return false;
+    }
+  }
+
   private async initialise() {
     if (!this.validateConfig()) {
       this.log.error('Configuration error. Please provide your Wi-Fi P1 meter\'s IP address');
+      return;
+    }
+
+    if (!await this.validateIp()) {
+      this.log.error('Your Wi-Fi P1 meter\'s IP address seems to be incorrect. No connection possible');
       return;
     }
 
