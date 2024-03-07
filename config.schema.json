@@ -6,7 +6,7 @@
     "type": "object",
     "properties": {
       "ip": {
-        "title": "P1 IP address",
+        "title": "Wi-Fi P1 Meter IP address",
         "type": "string",
         "required": true,
         "default": ""
@@ -16,7 +16,7 @@
         "type": "number",
         "required": true,
         "default": 60,
-        "minimum": 5,
+        "minimum": 1,
         "maximum": 3600
       },
       "hidePowerConsumptionDevice": {
