@@ -8,7 +8,6 @@ jobs:
 
     strategy:
       matrix:
-        # the Node.js versions to build on
         node-version: [18.x, 20.x]
 
     steps:
