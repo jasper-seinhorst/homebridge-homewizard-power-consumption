@@ -1,4 +1,5 @@
 # Homebridge Homewizard Power Consumption
+[![verified-by-homebridge](https://badgen.net/badge/homebridge/verified/purple)](https://github.com/homebridge/homebridge/wiki/Verified-Plugins)
 [![npm](https://img.shields.io/npm/dt/homebridge-homewizard-power-consumption.svg)](https://www.npmjs.com/package/homebridge-homewizard-power-consumption)
 [![npm](https://img.shields.io/npm/v/homebridge-homewizard-power-consumption.svg)](https://www.npmjs.com/package/homebridge-homewizard-power-consumption)
 
