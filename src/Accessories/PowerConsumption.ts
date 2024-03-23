@@ -13,8 +13,6 @@ export default class PowerConsumption implements HomewizardPowerConsumptionAcces
       .setCharacteristic(this.Characteristic.SerialNumber, device.serial)
       .setCharacteristic(this.Characteristic.Version, device.firmware_version);
 
-    console.log(accessory.context);
-
     this.chargingPower = this.accessory.getService(this.Service.LightSensor) || this.accessory.addService(this.Service.LightSensor);
   }
 
