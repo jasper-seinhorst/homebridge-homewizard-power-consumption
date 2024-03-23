@@ -1,15 +1,17 @@
 import { Service, PlatformAccessory, PlatformConfig, Logger, API, Characteristic } from 'homebridge';
-import { HomewizardPowerConsumptionAccessory } from '../PlatformTypes';
+import { HomewizardDevice, HomewizardPowerConsumptionAccessory } from '../PlatformTypes';
 
 export default class PowerReturn implements HomewizardPowerConsumptionAccessory {
   public readonly Service: typeof Service = this.api.hap.Service;
   public readonly Characteristic: typeof Characteristic = this.api.hap.Characteristic;
   private chargingPower: Service;
 
-  constructor(public config: PlatformConfig, public readonly log: Logger, public readonly api: API, public accessory: PlatformAccessory) {
+  constructor(public config: PlatformConfig, public readonly log: Logger, public readonly api: API, public accessory: PlatformAccessory, public device: HomewizardDevice) {
     this.accessory.getService(this.Service.AccessoryInformation)
       .setCharacteristic(this.Characteristic.Manufacturer, 'Homewizard')
-      .setCharacteristic(this.Characteristic.Model, 'P1');
+      .setCharacteristic(this.Characteristic.Model, device.product_name)
+      .setCharacteristic(this.Characteristic.SerialNumber, device.serial)
+      .setCharacteristic(this.Characteristic.Version, device.firmware_version);
 
     this.chargingPower = this.accessory.getService(this.Service.LightSensor) || this.accessory.addService(this.Service.LightSensor);
   }
