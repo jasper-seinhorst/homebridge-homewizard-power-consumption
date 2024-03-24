@@ -10,7 +10,7 @@ export default class PowerReturn implements HomewizardPowerConsumptionAccessory 
     this.accessory.getService(this.Service.AccessoryInformation)
       .setCharacteristic(this.Characteristic.Manufacturer, 'Homewizard')
       .setCharacteristic(this.Characteristic.Model, device.product_name)
-      .setCharacteristic(this.Characteristic.SerialNumber, device.serial);
+      .setCharacteristic(this.Characteristic.SerialNumber, `${device.serial}-power-return`);
 
     this.powerService = this.accessory.getService(this.Service.LightSensor) || this.accessory.addService(this.Service.LightSensor);
   }
